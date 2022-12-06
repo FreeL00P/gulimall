@@ -1,12 +1,12 @@
 server:
-  port: 9000
+  port: 11000
 spring:
   application:
-    name: gulimall-order
+    name: gulimall-ware
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://192.168.79.130:3306/gulimall_oms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.79.130:3306/gulimall_wms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.jdbc.Driver
 
 
