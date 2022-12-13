@@ -20,6 +20,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>com.atguigu.gulimall</groupId>
             <artifactId>gulimall-common</artifactId>
@@ -58,6 +59,7 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
 
 
     </dependencies>

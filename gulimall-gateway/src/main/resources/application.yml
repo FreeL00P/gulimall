@@ -1,18 +1,30 @@
-
 spring:
   application:
     name: gulimall-gateway
   cloud:
     gateway:
       routes:
-        - id: test_route
-          uri: https://baidu.com
+        - id: product_route
+          uri: lb://gulimall-product
           predicates:
-            - Query=url,baidu
-        - id: qq_route
-          uri: https://qq.com
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+        - id: third_party_route
+          uri: lb://gulimall-third-party
           predicates:
-            - Query=url,qq
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/?(?<segment>.*),/$\{segment}
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /renren-fast/$\{segment}
+
+
+
 
 server:
   port: 88
