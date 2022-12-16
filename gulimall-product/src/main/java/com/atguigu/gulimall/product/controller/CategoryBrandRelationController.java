@@ -2,15 +2,17 @@ package com.atguigu.gulimall.product.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.atguigu.gulimall.product.entity.BrandEntity;
+import com.atguigu.gulimall.product.entity.CategoryEntity;
+import com.atguigu.gulimall.product.vo.BrandVo;
+import com.atguigu.gulimall.product.vo.CategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.product.entity.CategoryBrandRelationEntity;
 import com.atguigu.gulimall.product.service.CategoryBrandRelationService;
-import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
 
 
@@ -31,15 +33,43 @@ public class CategoryBrandRelationController {
     /**
      * 列表
      */
+//    @GetMapping ("/catelog/list")
+//    //@RequiresPermissions("product:categorybrandrelation:list")
+//    public R list(@RequestParam("brandId") String brandId){
+//        List<CategoryBrandRelationEntity> data = categoryBrandRelationService.list(new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId));
+//
+//        return R.ok().put("data", data);
+//    }
+    /**
+     * 获取品牌关联的分类
+     */
     @GetMapping ("/catelog/list")
-    //@RequiresPermissions("product:categorybrandrelation:list")
-    public R list(@RequestParam("brandId") String brandId){
-        List<CategoryBrandRelationEntity> data = categoryBrandRelationService.list(new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId));
-
-        return R.ok().put("data", data);
+    public R GetCatelogList(@RequestParam("brandId") Long brandId){
+        List<CategoryEntity> list=categoryBrandRelationService.getCatelogListByBrandId(brandId);
+        //上面返回的是分类详细信息，进一步处理只返回我们需要的数据
+        List<CategoryVo> collect = list.stream().map(item -> {
+            CategoryVo catelogVo = new CategoryVo();
+            catelogVo.setCatelogId(item.getCatId());
+            catelogVo.setCatelogName(item.getName());
+            return catelogVo;
+        }).collect(Collectors.toList());
+        return R.ok().put("data", collect);
     }
-
-
+    /**
+     * 获取分类关联的品牌
+     */
+    @GetMapping("/brands/list")
+    public R getBrandList(@RequestParam("catId") Long catId){
+       List<BrandEntity> list =categoryBrandRelationService.getBrandListByCatId(catId);
+       //上面返回的是品牌详细信息，进一步处理只返回我们需要的数据
+        List<BrandVo> collect = list.stream().map(item -> {
+            BrandVo brandVo = new BrandVo();
+            brandVo.setBrandId(item.getBrandId());
+            brandVo.setBrandName(item.getName());
+            return brandVo;
+        }).collect(Collectors.toList());
+        return R.ok().put("data",collect);
+    }
     /**
      * 信息
      */
