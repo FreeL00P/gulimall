@@ -1,7 +1,18 @@
-package com.atguigu.common.to;/**
+package com.atguigu.common.to;
+
+import lombok.Data;
+
+import java.math.BigDecimal;
+
+/**
  * SpuBoundsTo
- * 
+ *
  * @author fj
  * @date 2022/12/17 14:00
- */public class SpuBoundsTo {
+ */
+@Data
+public class SpuBoundsTo {
+    private Long spuId;
+    private BigDecimal buyBounds;
+    private BigDecimal growBounds;
 }

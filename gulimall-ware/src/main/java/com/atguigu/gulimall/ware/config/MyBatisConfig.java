@@ -1,4 +1,4 @@
-package com.atguigu.gulimall.product.config;
+package com.atguigu.gulimall.ware.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**

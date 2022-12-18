@@ -1,16 +1,16 @@
 package com.atguigu.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.atguigu.gulimall.product.dao.ProductAttrValueDao;
+import com.atguigu.gulimall.product.entity.ProductAttrValueEntity;
+import com.atguigu.gulimall.product.service.ProductAttrValueService;
 import com.atguigu.gulimall.product.vo.AttrRespVo;
 import com.atguigu.gulimall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.product.entity.AttrEntity;
 import com.atguigu.gulimall.product.service.AttrService;
@@ -32,6 +32,10 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    private ProductAttrValueService productAttrValueService;
+
+
     /**
      * 列表
      */
@@ -52,7 +56,23 @@ public class AttrController {
         return R.ok().put("page", page);
     }
 
-
+    /**
+     * 获取spu规格
+     */
+    @GetMapping("/base/listforspu/{spuId}")
+    public R listSpu(@PathVariable("spuId") Long spuId){
+        List<ProductAttrValueEntity> list=productAttrValueService.getSpuInfo(spuId);
+        return R.ok().put("data",list);
+    }
+    /**
+     * 更新spu信息
+     */
+    @PostMapping("/update/{spuId}")
+    public R updateSpu(@PathVariable("spuId") Long spuId,
+                       @RequestBody List<ProductAttrValueEntity> entities){
+        productAttrValueService.updateSpuInfo(spuId,entities);
+        return R.ok();
+    }
     /**
      * 信息
      */

@@ -31,7 +31,7 @@ public class WareInfoController {
     private WareInfoService wareInfoService;
 
     /**
-     * 列表
+     * 列表 添加模糊查询
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:wareinfo:list")

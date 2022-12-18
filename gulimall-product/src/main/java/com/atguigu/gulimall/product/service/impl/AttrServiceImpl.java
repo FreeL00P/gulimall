@@ -4,11 +4,10 @@ import com.atguigu.common.constant.ProductConstant;
 import com.atguigu.gulimall.product.dao.AttrAttrgroupRelationDao;
 import com.atguigu.gulimall.product.dao.AttrGroupDao;
 import com.atguigu.gulimall.product.dao.CategoryDao;
-import com.atguigu.gulimall.product.entity.AttrAttrgroupRelationEntity;
-import com.atguigu.gulimall.product.entity.AttrGroupEntity;
-import com.atguigu.gulimall.product.entity.CategoryEntity;
+import com.atguigu.gulimall.product.entity.*;
 import com.atguigu.gulimall.product.service.AttrGroupService;
 import com.atguigu.gulimall.product.service.CategoryService;
+import com.atguigu.gulimall.product.service.ProductAttrValueService;
 import com.atguigu.gulimall.product.vo.AttrGroupRelationVo;
 import com.atguigu.gulimall.product.vo.AttrRespVo;
 import com.atguigu.gulimall.product.vo.AttrVo;
@@ -30,7 +29,6 @@ import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.Query;
 
 import com.atguigu.gulimall.product.dao.AttrDao;
-import com.atguigu.gulimall.product.entity.AttrEntity;
 import com.atguigu.gulimall.product.service.AttrService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -49,6 +47,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductAttrValueService productAttrValueService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -219,7 +220,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
      * @return
      */
     @Override
-    public List<AttrEntity> getAttrRelationByAttrGroupId(String attrGroupId) {
+    public List<AttrEntity> getAttrRelationByAttrGroupId(Long attrGroupId) {
         //从关系表中获取关联的属性分组id
         QueryWrapper<AttrAttrgroupRelationEntity> wrapper = new QueryWrapper<>();
         wrapper.eq("attr_group_id",attrGroupId);
@@ -285,4 +286,6 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         PageUtils pageUtils = new PageUtils(page);
         return pageUtils;
     }
+
+
 }

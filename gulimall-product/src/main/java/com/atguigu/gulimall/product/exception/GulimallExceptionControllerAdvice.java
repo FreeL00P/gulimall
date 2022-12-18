@@ -37,9 +37,10 @@ public class GulimallExceptionControllerAdvice {
     }
 
     //处理任意类型异常
-    @ExceptionHandler(value= Throwable.class)
-    public R handleException(Throwable throwable){
-        return R.error(BizCodeEnum.UNKNOW_EXCEPTION.getCode(), BizCodeEnum.UNKNOW_EXCEPTION.getMsg());
-    }
+//    @ExceptionHandler(value= Throwable.class)
+//    public R handleException(Throwable throwable){
+//        log.error("又TM报错了-->"+throwable);
+//        return R.error(BizCodeEnum.UNKNOW_EXCEPTION.getCode(), BizCodeEnum.UNKNOW_EXCEPTION.getMsg());
+//    }
 
 }

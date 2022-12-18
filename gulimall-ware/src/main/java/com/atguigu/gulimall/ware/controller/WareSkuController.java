@@ -31,7 +31,7 @@ public class WareSkuController {
     private WareSkuService wareSkuService;
 
     /**
-     * 列表
+     * 列表 添加根据wareId skuId查询库存
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:waresku:list")

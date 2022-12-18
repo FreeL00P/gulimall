@@ -31,13 +31,12 @@ public class PurchaseDetailController {
     private PurchaseDetailService purchaseDetailService;
 
     /**
-     * 列表
+     * 列表 查询购买需求
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:purchasedetail:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = purchaseDetailService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 

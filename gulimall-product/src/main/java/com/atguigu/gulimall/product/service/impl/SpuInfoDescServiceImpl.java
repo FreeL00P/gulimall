@@ -1,6 +1,8 @@
 package com.atguigu.gulimall.product.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -25,5 +27,15 @@ public class SpuInfoDescServiceImpl extends ServiceImpl<SpuInfoDescDao, SpuInfoD
 
         return new PageUtils(page);
     }
+
+    @Override
+    public void saveDescInfo(Long spuId, List<String> decript) {
+        String desc=String.join(",",decript);
+        SpuInfoDescEntity descEntity = new SpuInfoDescEntity();
+        descEntity.setDecript(desc);
+        descEntity.setSpuId(spuId);
+        this.save(descEntity);
+    }
+
 
 }
