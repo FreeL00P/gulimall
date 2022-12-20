@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.product.service.impl;
 
+import com.atguigu.gulimall.product.dao.AttrDao;
 import com.atguigu.gulimall.product.entity.AttrEntity;
 import com.atguigu.gulimall.product.service.AttrService;
 import com.atguigu.gulimall.product.vo.BaseAttrs;
@@ -26,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao, ProductAttrValueEntity> implements ProductAttrValueService {
 
     @Autowired
-    private AttrService attrService;
+    private AttrDao attrDao;
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<ProductAttrValueEntity> page = this.page(
@@ -44,7 +45,7 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
             ProductAttrValueEntity productAttrValueEntity = new ProductAttrValueEntity();
             productAttrValueEntity.setAttrId(item.getAttrId());
             //根据attrId查询更详细的信息
-            AttrEntity byId = attrService.getById(item.getAttrId());
+            AttrEntity byId = attrDao.selectById(item.getAttrId());
             productAttrValueEntity.setAttrName(byId.getAttrName());
             productAttrValueEntity.setSpuId(spuId);
             productAttrValueEntity.setAttrValue(item.getAttrValues());
