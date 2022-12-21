@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.product.service;
 
+import com.atguigu.gulimall.product.vo.Catelog2Vo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.gulimall.product.entity.CategoryEntity;
@@ -24,7 +25,11 @@ public interface CategoryService extends IService<CategoryEntity> {
     void removeMenuByIds(List<Long> ids);
     //根据菜单ID查询层级路径将id封装成一个数组
     Long[] getCatelogPath(Long catelogId);
-
+    //级联更新关联表中的数据
     void updateCascade(CategoryEntity category);
+    //获取一级分类
+    List<CategoryEntity> getLevel1Category();
+
+    Map<String, List<Catelog2Vo>> getCatalogJson();
 }
 

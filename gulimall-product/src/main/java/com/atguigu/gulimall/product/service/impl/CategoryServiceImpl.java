@@ -1,6 +1,7 @@
 package com.atguigu.gulimall.product.service.impl;
 
 import com.atguigu.gulimall.product.service.CategoryBrandRelationService;
+import com.atguigu.gulimall.product.vo.Catelog2Vo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +65,11 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         baseMapper.deleteBatchIds(ids);
     }
 
+    /**
+     * 获取分类全路径
+     * @param catelogId
+     * @return
+     */
     @Override
     public Long[] getCatelogPath(Long catelogId) {
         List<Long> paths = new ArrayList<Long>();
@@ -81,6 +87,53 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         //更新自己
         this.updateById(category);
         categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+    }
+
+    /**
+     * 获取一级分类id
+     * @return
+     */
+    @Override
+    public List<CategoryEntity> getLevel1Category() {
+        QueryWrapper<CategoryEntity> wrapper = new QueryWrapper<CategoryEntity>().eq("cat_level", 1);
+        return this.list(wrapper);
+    }
+
+    @Override
+    public Map<String, List<Catelog2Vo>> getCatalogJson() {
+        //获取所有一级分类
+        List<CategoryEntity> category1Level = this.getLevel1Category();
+        Map<String, List<Catelog2Vo>> map = category1Level.stream().collect(Collectors.toMap(k -> k.getCatId().toString(), v -> {
+            //查询一级分类下对应的二级分类
+            List<CategoryEntity> category2Level = this.list(new QueryWrapper<CategoryEntity>().eq("parent_cid", v.getCatId()));
+            List<Catelog2Vo> catelog2Vos = null;
+            if (category2Level != null && category2Level.size() != 0) {
+                //封装成Vo
+                catelog2Vos = category2Level.stream().map(item -> {
+                    Catelog2Vo catelog2Vo = new Catelog2Vo();
+                    catelog2Vo.setId(item.getCatId().toString());
+                    catelog2Vo.setName(item.getName());
+                    catelog2Vo.setCatalog1Id(item.getParentCid().toString());
+                    //查询二级分类下的三级分类
+                    List<CategoryEntity> category3Level = this.list(new QueryWrapper<CategoryEntity>().eq("parent_cid", item.getCatId()));
+                    List<Catelog2Vo.Catelog3Vo> catelog3Vos = null;
+                    if (category3Level != null && category3Level.size() != 0) {
+                        //封装成VO
+                        catelog3Vos = category3Level.stream().map(level3 -> {
+                            Catelog2Vo.Catelog3Vo catelog3Vo = new Catelog2Vo.Catelog3Vo();
+                            catelog3Vo.setCatalog2Id(level3.getParentCid().toString());
+                            catelog3Vo.setId(level3.getCatId().toString());
+                            catelog3Vo.setName(level3.getName());
+                            return catelog3Vo;
+                        }).collect(Collectors.toList());
+                    }
+                    catelog2Vo.setCatalog3List(catelog3Vos);
+                    return catelog2Vo;
+                }).collect(Collectors.toList());
+            }
+            return catelog2Vos;
+        }));
+        return map;
     }
 
     public List<Long> findParentCid(List<Long> paths,Long catelogId){
