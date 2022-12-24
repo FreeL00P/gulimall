@@ -1,16 +1,11 @@
-package com.xunqi.gulimall.search.vo;
+package com.atguigu.gulimall.search.vo;
 
-import com.xunqi.common.es.SkuEsModel;
+import com.atguigu.common.es.SkuEsModel;
+
 import lombok.Data;
 
 import java.util.List;
 
-/**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-13 14:41
- **/
 
 @Data
 public class SearchResult {
