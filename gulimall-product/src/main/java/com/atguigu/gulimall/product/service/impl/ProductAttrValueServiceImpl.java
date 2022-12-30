@@ -2,8 +2,7 @@ package com.atguigu.gulimall.product.service.impl;
 
 import com.atguigu.gulimall.product.dao.AttrDao;
 import com.atguigu.gulimall.product.entity.AttrEntity;
-import com.atguigu.gulimall.product.service.AttrService;
-import com.atguigu.gulimall.product.vo.BaseAttrs;
+import com.atguigu.gulimall.product.vo.SpuSave.BaseAttrs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

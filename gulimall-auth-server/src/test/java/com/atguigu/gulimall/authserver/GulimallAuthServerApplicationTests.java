@@ -1,11 +1,10 @@
-package com.atguigu.gulimall.thirdparty;
+package com.atguigu.gulimall.authserver;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GulimallThirdPartyApplicationTests {
+class GulimallAuthServerApplicationTests {
 
     @Test
     void contextLoads() {

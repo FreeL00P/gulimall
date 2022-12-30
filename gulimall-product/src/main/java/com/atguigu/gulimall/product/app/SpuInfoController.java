@@ -3,7 +3,7 @@ package com.atguigu.gulimall.product.app;
 import java.util.Arrays;
 import java.util.Map;
 
-import com.atguigu.gulimall.product.vo.SpuSaveVo;
+import com.atguigu.gulimall.product.vo.SpuSave.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;

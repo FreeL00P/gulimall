@@ -1,8 +1,11 @@
 /**
  * Copyright 2019 bejson.com
  */
-package com.atguigu.gulimall.product.vo;
+package com.atguigu.gulimall.product.vo.SpuSave;
 
+import com.atguigu.gulimall.product.vo.SpuSave.BaseAttrs;
+import com.atguigu.gulimall.product.vo.SpuSave.Bounds;
+import com.atguigu.gulimall.product.vo.SpuSave.Skus;
 import lombok.Data;
 
 import java.math.BigDecimal;

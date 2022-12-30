@@ -1,5 +1,6 @@
-package com.xunqi.gulimall.product.vo;
+package com.atguigu.gulimall.product.vo;
 
+import com.atguigu.gulimall.product.vo.SpuSave.Attr;
 import lombok.Data;
 import lombok.ToString;
 

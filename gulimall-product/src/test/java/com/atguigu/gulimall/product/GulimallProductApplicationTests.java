@@ -1,7 +1,10 @@
 package com.atguigu.gulimall.product;
 
 import com.atguigu.gulimall.product.entity.BrandEntity;
-import com.atguigu.gulimall.product.service.BrandService;
+import com.atguigu.gulimall.product.entity.SkuImagesEntity;
+import com.atguigu.gulimall.product.service.*;
+import com.atguigu.gulimall.product.vo.SkuItemSaleAttrVo;
+import com.atguigu.gulimall.product.vo.SpuItemAttrGroupVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +24,25 @@ class GulimallProductApplicationTests {
 
     @Resource
     private BrandService brandService;
+
+    @Autowired
+    private SkuImagesService imagesService;
+
+    @Autowired
+    private SkuSaleAttrValueService skuSaleAttrValueService;
+
+    @Autowired
+    private AttrGroupService attrGroupService;
+
+    @Test
+    public void testApi(){
+//        List<SkuImagesEntity> imagesBySkuId = imagesService.getImagesBySkuId(16L);
+//        System.out.println("imagesBySkuId = " + imagesBySkuId);
+//        List<SkuItemSaleAttrVo> saleAttrsBySpuId = skuSaleAttrValueService.getSaleAttrsBySpuId(13L);
+//        System.out.println("saleAttrsBySpuId = " + saleAttrsBySpuId);
+        List<SpuItemAttrGroupVo> withAttrsBySpuId = attrGroupService.getAttrgroupWithAttrsBySpuId(13L, 225L);
+        System.out.println("withAttrsBySpuId = " + withAttrsBySpuId);
+    }
     @Test
     public void contextLoads() {
 //        BrandEntity brandEntity = new BrandEntity();
