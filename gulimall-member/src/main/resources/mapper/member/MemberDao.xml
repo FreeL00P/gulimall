@@ -24,6 +24,9 @@
         <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
     </resultMap>
+    <select id="getDefaultLevel" resultType="com.atguigu.gulimall.member.entity.MemberLevelEntity">
+       SELECT * FROM ums_member_level WHERE default_status=1
+    </select>
 
 
 </mapper>

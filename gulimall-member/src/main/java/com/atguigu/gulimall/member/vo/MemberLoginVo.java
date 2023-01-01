@@ -1,4 +1,4 @@
-package com.atguigu.gulimall.authserver.vo;
+package com.atguigu.gulimall.member.vo;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2022/12/31 9:06
  */
 @Data
-public class UserLoginVo {
+public class MemberLoginVo {
 
     private String loginacct;
 

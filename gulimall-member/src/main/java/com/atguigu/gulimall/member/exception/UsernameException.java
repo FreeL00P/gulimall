@@ -1,4 +1,4 @@
-package com.atguigu.gulimall.authserver.exception;
+package com.atguigu.gulimall.member.exception;
 
 /**
  *

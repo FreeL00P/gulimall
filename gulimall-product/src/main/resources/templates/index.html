@@ -95,10 +95,11 @@
   					</b>
         <ul>
           <li>
-            <a href="http://auth.gulimall.com/login.html">你好，请登录</a>
+            <a th:if="${session.loginUser!=null}">欢迎: [[${session.loginUser==null?'':session.loginUser.username}]]</a>
+            <a href="http://auth.gulimall.com/login.html" th:if="${session.loginUser==null} "></a>
           </li>
           <li>
-            <a href="http://auth.gulimall.com/reg.html" class="li_2">免费注册</a>
+            <a href="http://auth.gulimall.com/reg.html" class="li_2" th:if="${session.loginUser==null}">免费注册</a>
           </li>
           <span>|</span>
           <li>
@@ -126,7 +127,7 @@
         <div class="header_ko">
           <p>购物车中还没有商品，赶紧选购吧！</p>
         </div>
-        fatkun</div>
+        </div>
       <div class="header_form_nav">
         <ul>
           <li>
@@ -241,10 +242,11 @@
                 <a href="/static/#"><img class="" src="static/index/img/touxiang.png"></a>
               </div>
               <div class="user_info_show">
-                <p class="">Hi, 欢迎来到!</p>
+                <a th:if="${session.loginUser!=null}">HI! [[${session.loginUser==null?'':session.loginUser.username}]] 欢迎来到</a>
                 <p>
-                  <a href="/static/#" class="">登录</a>
-                  <a href="/static/#" class="">注册</a>
+
+                  <a href="http://auth.gulimall.com/login.html" th:if="${session.loginUser==null} ">登陆</a>
+                  <a href="http://auth.gulimall.com/reg.html" class="li_2" th:if="${session.loginUser==null}">注册</a>
                 </p>
               </div>
             </div>

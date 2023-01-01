@@ -4991,46 +4991,48 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 			</div>
 		</header>
 		<section>
-			<form action="" class="one">
+			<div class="tips" style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'msg') ? errors.msg : '') : ''}">
+
+			</div>
+			<form action="/regist" method="post" class="one">
 				<div class="register-box">
 					<label for="username" class="username_label">用 户 名
-			<input maxlength="20" type="text" placeholder="您的用户名和登录名" >
+			<input  name="username" maxlength="20" type="text" placeholder="您的用户名和登录名" >
 					</label>
-					<div class="tips">
+					<div class="tips" style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'username') ? errors.username : '') : ''}">
 
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">设 置 密 码
-			<input maxlength="20" type="password" placeholder="建议至少使用两种字符组合">
+					<label  class="other_label">设 置 密 码
+			<input name="password" maxlength="20" type="password" placeholder="建议至少使用两种字符组合">
 			</label>
-					<div class="tips">
+					<div class="tips" style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'password') ? errors.password : '') : ''}">
 
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">确 认 密 码
+					<label  class="other_label">确 认 密 码
 			<input maxlength="20" type="password" placeholder="请再次输入密码">
 			</label>
 					<div class="tips">
-
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">
+					<label  class="other_label">
 			<span>中国 0086∨</span>
-			<input class="phone" id="phoneNum" maxlength="20" type="text" placeholder="建议使用常用手机">
+			<input name="phone" class="phone" id="phoneNum" maxlength="20" type="text" placeholder="建议使用常用手机">
 			</label>
-					<div class="tips">
+					<div class="tips" style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'phone') ? errors.phone : '') : ''}">
 
 					</div>
 				</div>
 				<div class="register-box">
-					<label for="username" class="other_label">验 证 码
-			<input maxlength="20" type="text" placeholder="请输入验证码" class="caa">
+					<label  class="other_label">验 证 码
+			<input name="code" maxlength="20" type="text" placeholder="请输入验证码" class="caa">
 			</label>
 					<a id="sendCode">发送验证码</a>
-					<div class="tips">
+					<div class="tips" style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'code') ? errors.code : '') : ''}">
 
 					</div>
 				</div>
@@ -5249,7 +5251,6 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 						//发送用户信息
 						stuList.push(new Student($('input').eq(0).val(), $('input').eq(1).val(), $('input').eq(3).val(), stuList.length + 1));
 						localStorage.setItem('stuList', JSON.stringify(stuList));
-						alert("注册成功");
 						window.open("userlist.html", "_blank");
 					} else {
 						$("#xieyi").next().next().next(".tips").text("请勾选协议");
@@ -5294,7 +5295,12 @@ Cookie</span>是由网页服务器存放在您的访问设备上的文本文件�
 						//给指定手机号发送验证码
 						//获取手机号
 
-						$.get("/sms/sendcode?phone="+$("#phoneNum").val())
+						$.get("/sms/sendcode?phone="+$("#phoneNum").val(),function(data){
+							if(data.code!=0){
+								console.log(data.msg)
+								alert(data.msg)
+							}
+						})
 						timeOutChangeStyle();
 					}
 

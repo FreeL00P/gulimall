@@ -22,7 +22,8 @@ spring:
     port: 6379
   cache:
     cache-names: redis
-
+  session:
+    store-type: redis
 mybatis-plus:
   global-config:
     db-config:

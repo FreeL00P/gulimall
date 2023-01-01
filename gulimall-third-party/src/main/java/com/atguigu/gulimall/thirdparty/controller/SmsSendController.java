@@ -30,7 +30,7 @@ public class SmsSendController {
      * @return
      */
     @GetMapping("/sendcode")
-    public R sendCode(@RequestParam("phone") String phone,@RequestParam("code") String code) throws ClientException {
+    public R sendCode(@RequestParam("phone") String phone,@RequestParam("code") String code){
         smsComponent.sendCode(phone,code);
         return R.ok();
     }
