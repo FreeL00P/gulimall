@@ -616,7 +616,7 @@
 
 						<div class="box-btns clear">
 							<div class="box-btns-one">
-								<input type="text" name="" id="" value="1" />
+								<input type="text" name="" id="numInput" value="1" />
 								<div class="box-btns-one1">
 
 									<div>
@@ -633,7 +633,7 @@
 								</div>
 							</div>
 							<div class="box-btns-two">
-								<a href="http://cart.gulimall.com/addToCart">
+								<a href="#" id="addToCartA"  th:attr="skuId=${item.info.skuId}" >
 									加入购物车
 								</a>
 							</div>
@@ -1219,9 +1219,12 @@
 	<script type="text/javascript">
 
 	</script>
-	<script>fatkun
-		$(".sku_attr_value").click(function () {
-			
-		})
+	<script>
+		$("#addToCartA").click(function () {
+			var num=$("#numInput").val();
+			var skuId=$(this).attr("skuId");
+			location.href="http://cart.gulimall.com/addToCart?skuId="+skuId+"&num="+num;
+			return false;
+		});
 	</script>
 </html>

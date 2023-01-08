@@ -19,6 +19,20 @@ public class CartItem {
 
     private Boolean check=true;
 
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "skuId=" + skuId +
+                ", check=" + check +
+                ", title='" + title + '\'' +
+                ", skuAttr=" + skuAttr +
+                ", price=" + price +
+                ", count=" + count +
+                ", image='" + image + '\'' +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
+
     private String title;
 
     private List<String> skuAttr;
@@ -26,6 +40,17 @@ public class CartItem {
     private BigDecimal price;
 
     private Integer count;
+
+    private String image;
+
+    public String image() {
+        return image;
+    }
+
+    public CartItem setImage(String image) {
+        this.image = image;
+        return this;
+    }
 
     private BigDecimal totalPrice;
 
@@ -38,7 +63,7 @@ public class CartItem {
         return this;
     }
 
-    public Boolean check() {
+    public Boolean getCheck() {
         return check;
     }
 
@@ -47,7 +72,7 @@ public class CartItem {
         return this;
     }
 
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
@@ -56,7 +81,7 @@ public class CartItem {
         return this;
     }
 
-    public List<String> skuAttr() {
+    public List<String> getSkuAttr() {
         return skuAttr;
     }
 
@@ -65,7 +90,7 @@ public class CartItem {
         return this;
     }
 
-    public BigDecimal price() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -74,7 +99,7 @@ public class CartItem {
         return this;
     }
 
-    public Integer count() {
+    public Integer getCount() {
         return count;
     }
 
@@ -83,7 +108,7 @@ public class CartItem {
         return this;
     }
 
-    public BigDecimal totalPrice() {
+    public BigDecimal getTotalPrice() {
         return this.price.multiply(new BigDecimal(""+this.count));
     }
 

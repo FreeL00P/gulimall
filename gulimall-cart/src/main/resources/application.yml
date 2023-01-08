@@ -1,5 +1,5 @@
 server:
-  port: 30000
+  port: 4 0000
 spring:
   cloud:
     nacos:

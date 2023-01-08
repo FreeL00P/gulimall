@@ -21,7 +21,7 @@ public class Cart {
 
     private BigDecimal reduce=new BigDecimal("0.00");//减免价格
 
-    public List<CartItem> items() {
+    public List<CartItem> getItems() {
         return items;
     }
 
@@ -30,11 +30,11 @@ public class Cart {
         return this;
     }
 
-    public Integer countNum() {
+    public Integer getCountNum() {
         countNum=0;
         if (items == null&&items.size()>0){
             for (CartItem item : items) {
-                countNum += item.count();
+                countNum += item.getCount();
             }
         }
         return countNum;
@@ -45,7 +45,7 @@ public class Cart {
         return this;
     }
 
-    public Integer countType() {
+    public Integer getCountType() {
         return countType;
     }
 
@@ -54,16 +54,16 @@ public class Cart {
         return this;
     }
 
-    public BigDecimal totalAmount() {
+    public BigDecimal getTotalAmount() {
         BigDecimal amount = new BigDecimal("0");
         if (items == null&&items.size()>0){
             for (CartItem item : items) {
-                BigDecimal totalPrice = item.totalPrice();
+                BigDecimal totalPrice = item.getTotalPrice();
                 amount=amount.add(totalPrice);
             }
         }
         //减去优惠金额
-        amount=amount.subtract(this.reduce());
+        amount=amount.subtract(this.getReduce());
         return amount;
     }
 
@@ -72,7 +72,7 @@ public class Cart {
         return this;
     }
 
-    public BigDecimal reduce() {
+    public BigDecimal getReduce() {
         return reduce;
     }
 
