@@ -54,7 +54,7 @@ public class CartItem {
 
     private BigDecimal totalPrice;
 
-    public Long skuId() {
+    public Long getSkuId() {
         return skuId;
     }
 
