@@ -104,17 +104,17 @@
 										<p class="dj" th:text="'￥'+${#numbers.formatDecimal(item.price,3,2)}">4599.00</p>
 									</li>
 									<li>
-										<p>
-											<span>-</span>
-											<span th:text="${item.count}">5</span>
-											<span>+</span>
+										<p th:attr="skuId=${item.skuId}">
+											<span class="countOpsBtn">-</span>
+											<span class="countOpsNum" th:text="${item.count}">5</span>
+											<span class="countOpsBtn">+</span>
 										</p>
 									</li>
 									<li style="font-weight:bold">
 										<p class="zj" th:text="'￥'+${#numbers.formatDecimal(item.totalPrice,3,2)}">￥22995.00</p>
 									</li>
 									<li>
-										<p>删除</p>
+										<p class="deleteItemBtn" th:attr="skuId=${item.skuId}">删除</p>
 									</li>
 								</ol>
 							</div>
@@ -163,7 +163,7 @@
 				</dl>
 			</div>
 			<div>
-				<button type="button">删除</button>
+				<button type="button" onclick="deleteItem">删除</button>
 
 			</div>
 		</div>
@@ -759,6 +759,19 @@
 			var skuId=$(this).attr("skuId");
 			var check=$(this).prop("checked");
 			location.href="http://cart.gulimall.com/checkItem?skuId="+skuId+"&check="+(check?1:0);
+		});
+		$(".countOpsBtn").click(function(){
+			var skuId=$(this).parent().attr("skuId");
+			var num=$(this).parent().find(".countOpsNum").text();
+			location.href="http://cart.gulimall.com/countNum?skuId="+skuId+"&num="+num;
+		});
+		var deleteId=0;
+		$(".deleteItemBtn").click(function () {
+			deleteId=$(this).attr("skuId")
 		})
+		function deleteItem() {
+			location.href="http://cart.gulimall.com/deleteItem?skuId="+deleteId;
+		}
 	</script>
 </html>
+fatkun
