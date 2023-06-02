@@ -19,6 +19,18 @@ public class CartItem {
 
     private Boolean check=true;
 
+    private String title;
+
+    private List<String> skuAttr;
+
+    private BigDecimal price;
+
+    private Integer count;
+
+    private String image;
+
+    private BigDecimal totalPrice;
+
     @Override
     public String toString() {
         return "CartItem{" +
@@ -32,17 +44,6 @@ public class CartItem {
                 ", totalPrice=" + totalPrice +
                 '}';
     }
-
-    private String title;
-
-    private List<String> skuAttr;
-
-    private BigDecimal price;
-
-    private Integer count;
-
-    private String image;
-
     public String image() {
         return image;
     }
@@ -51,8 +52,6 @@ public class CartItem {
         this.image = image;
         return this;
     }
-
-    private BigDecimal totalPrice;
 
     public Long getSkuId() {
         return skuId;
